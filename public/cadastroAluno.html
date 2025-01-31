@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Aluno</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    
+</head>
+<body>
+    <header>
+        <div class="back-button">
+            <a href="indexAluno.html">Voltar</a>
+        </div>
+        <h1>Sistema Escolar</h1>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h1>Cadastro de Aluno</h1><br>
+            <form method="post" action="/alunos/cadastrar" id='formAluno'>
+                <label for="matricula">Matrícula</label>
+                <input type="text" id="matricula" name="matricula" placeholder="Digite a matrícula do aluno" required>
+
+                <label for="nome-aluno">Nome</label>
+                <input type="text" id="nome-aluno" name="nome-aluno" placeholder="Digite o nome do aluno" required>
+
+                <label for="turma">Turma</label>
+                <input type="text" id="turma" name="turma" placeholder="Digite a turma do aluno" required>
+
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Digite o e-mail do aluno" required>
+
+                <button type="submit">Cadastrar Aluno</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sistema Escolar. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="./script/aluno.js"></script>
+</body>
+</html>

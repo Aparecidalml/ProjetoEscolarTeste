@@ -1,0 +1,82 @@
+### Alunos
+GET http://localhost:8080/
+
+###GET alunos
+GET http://localhost:8080/alunos/visualizar
+
+###GET ID
+GET http://localhost:8080/alunos/visualizar/a123456
+
+###POST
+POST http://localhost:8080/alunos/cadastrar
+Content-Type: application/json
+
+{
+    "matricula": "a12347",
+    "nome": "João",
+    "turma": "DS2023",
+    "email": "joao@gmail.com"
+}
+
+###PUT
+PUT http://localhost:8080/alunos/atualiza/ra123456
+Content-Type: application/json
+
+{
+    "nome": "João",
+    "turma": "DS2024",
+    "email": "João@gmail.com"
+}
+
+###PATCH
+PATCH http://localhost:8080/alunos/patch/a123458
+Content-Type: application/json
+
+{
+    "nome": "Maria da Silva",
+    "turma": "DS2023"
+}
+
+###DELETE
+DELETE http://localhost:8080/alunos/excluir/a12345
+
+
+### DISCIPLINAS
+
+GET http://localhost:8080/disciplinas/visualizar
+
+###
+GET http://localhost:8080/disciplinas/visualizar/003
+
+###
+POST http://localhost:8080/disciplinas/cadastrar
+Content-Type: application/json
+
+{
+    "codigo": "004", 
+    "nome": "Desenvolvimento Web", 
+    "ch": "150", 
+    "professor":"Marcos"
+}
+
+###
+PUT http://localhost:8080/disciplinas/atualizar/003
+Content-Type: application/json
+
+{
+    "nome": "Desenvolvimento Mobile", 
+    "ch": "140", 
+    "professor":"Marcos"
+}
+
+###
+PATCH  http://localhost:8080/disciplinas/patch/003
+Content-Type: application/json
+
+{
+    "nome": "Desenvolvimento de Sistemas", 
+    "professor":"Marcos"
+}
+
+### DELETE
+DELETE http://localhost:8080/disciplinas/excluir/000

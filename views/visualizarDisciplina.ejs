@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Disciplinas</title>
+    <link rel="stylesheet" type="text/css" href='../css/style.css' />
+</head>
+<body>
+    <header>
+        <div class="back-button">
+            <a href="../indexDisciplina.html">Voltar</a>
+        </div>
+        <h1>Sistema Escolar</h1>
+    </header>
+
+    <main>
+        <div class="disciplinas-container">
+            <h2>Lista de Disciplinas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Carga Horária</th>
+                        <th>Professor</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% disciplinas.forEach(disciplina => { %>
+                        <tr>
+                            <td id="codigo"><%= disciplina.codigo %></td>
+                            <td><%= disciplina.nome %></td>
+                            <td><%= disciplina.ch %> horas</td>
+                            <td><%= disciplina.professor %></td>
+                            <td>
+                                <a href="/disciplinas/atualizar/<%= disciplina.codigo %>">Editar</a> |
+                                <button onclick=" excluirDisciplina('<%= disciplina.codigo %>') "> Excluir</button> 
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sistema Escolar. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+         async function excluirDisciplina(codigo) {
+            try {
+                if (confirm('Tem certeza que deseja excluir esta disciplina?')) {                
+                    const response = await fetch(`/disciplinas/excluir/${codigo}`, {
+                        method: 'DELETE'
+                    })                
+
+                if(!response.ok){
+                    throw new Error("Erro ao excluir a disciplina!")
+                    alert("Erro ao excluir disciplina!")
+                }
+                alert('Disciplina excluída com sucesso!')
+                // window.location.href = '/disciplinas/visualizar'
+                window.location.reload();
+            }
+            } catch (error) {
+                alert(error)
+                console.error(error)
+            }
+        
+         }
+
+               
+        // async function excluirDisciplina(codigo) {
+        //     if (confirm('Tem certeza que deseja excluir esta disciplina?')) {
+        //         await fetch(`/disciplinas/excluir/${codigo}`, { method: 'DELETE'})
+        //             .then((response) => {
+        //                 if (response.ok) {
+        //                    // window.location.href = '/disciplinas/visualizar'
+        //                    window.location.reload();
+        //                 } else {
+        //                     alert('Erro ao excluir disciplina!')
+        //                 }
+        //             })
+        //             .catch(error => {
+        //                 alert('Erro ao excluir disciplina!')
+        //              })
+        //     }
+        // }        
+    </script>
+</body>
+</html>

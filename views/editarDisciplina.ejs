@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Disciplinas</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+</head>
+<body>
+    <header>
+        <div class="back-button">
+            <a href="/disciplinas/visualizar">Voltar</a>
+        </div>
+        <h1>Sistema Escolar</h1>
+    </header>
+
+    <main>
+        <div class="form-container">
+          <h1>Editar de Disciplina</h1><br>
+          <form id="formDisciplina">
+              <label for="codigo">Código</label>
+              <input type="text" id="codigo" name="codigo" value="<%= disciplina.codigo %>" placeholder="Digite o código da disciplina" required>
+  
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" value="<%= disciplina.nome %>" placeholder="Digite o nome da disciplina" required>
+  
+              <label for="ch">Carga Horária</label>
+              <input type="number" id="ch" name="ch" value="<%= disciplina.ch %>" placeholder="Digite a carga horária" required>
+  
+              <label for="professor">Professor</label>
+              <input type="text" id="professor" name="professor" value="<%= disciplina.professor %>" placeholder="Digite o nome do professor" required>
+  
+              <button type="submit">Atualizar Disciplina</button>
+          </form>
+      </div>
+      </main>
+  
+      <footer>
+          <p>&copy; 2025 Sistema Escolar. Todos os direitos reservados.</p>
+      </footer>
+
+      <script>
+        document.getElementById('formDisciplina').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const codigo = document.getElementById('codigo').value;
+            const nome = document.getElementById('nome').value;
+            const ch = document.getElementById('ch').value;
+            const professor = document.getElementById('professor').value;
+
+           try {
+                const response = await fetch(`/disciplinas/atualizar/${codigo}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({nome, ch, professor})
+                })
+
+                const data = await response.json();
+
+                if (response.success) {
+                    alert('Disciplina atualizada com sucesso!');
+                     window.location.href = '/disciplinas/visualizar';
+                    // window.location.reload()
+                } else {
+                    alert('Erro ao atualizar disciplina!');
+                }
+            } catch (error) {
+                console.error('Erro ao enviar PUT:', error);
+                alert('Erro ao atualizar disciplina! Tente novamente.');
+            }
+        })
+    </script>
+  
+       <script>
+    //      document.getElementById('formDisciplina').addEventListener('submit', function (event) {
+    //       event.preventDefault();
+    //       alert('Disciplina atualizada com sucesso!')
+    //       form.submit();
+    //   })
+
+    //     async function atualizarDisciplina() {            
+    //         const codigo = document.getElementById('codigo').value
+    //         const nome = document.getElementById('nome').value
+    //         const ch = document.getElementById('ch').value
+    //         const professor = document.getElementById('professor').value
+
+    //                     await fetch(`/disciplinas/atualizar/${codigo}`, { method: 'PUT', headers: {'Content-Type': 'application/json', },
+    //             body: JSON.stringify({nome, ch, professor})
+    //         })
+    //             .then((response) => response.json())                
+    //             .then((data) => {                    
+    //                 if (data.success) {
+    //                     // window.location.href = '/disciplinas/visualizar'
+    //                     window.location.reload()
+    //                 } else {
+    //                     alert('Erro ao atualizar disciplina!')
+    //                 }
+    //             })
+    //             .catch(error => {
+    //                 console.error('Erro ao enviar PUT:', error)
+    //                 alert('Disciplina atualizada com sucesso!')
+    //                 // window.location.href = '/disciplinas/visualizar'
+    //                 window.location.reload()
+    //             })
+    //     }        
+     </script>
+</body>
+</html>
