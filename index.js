@@ -8,8 +8,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express()
-// const porta = 8080
-// const host = "localhost"
+const port = 8080
+const host = "localhost"
 
 app.use(express.json());
 
@@ -27,6 +27,10 @@ app.get("/", (req, res) => {
     res.sendFile(path.resolve("./public/index.html"));
 })
 
-app.listen(process.env.port, process.env.host, () => {
-    console.log(`Acesso ao servidor: http://${process.env.host}:${process.env.port}`)
+app.listen(port, host, () => {
+    console.log(`Acesso ao servidor: http://${host}:${port}`)
 })
+
+/*app.listen(process.env.port, process.env.host, () => {
+    console.log(`Acesso ao servidor: http://${process.env.host}:${process.env.port}`)
+})*/
